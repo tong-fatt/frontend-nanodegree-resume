@@ -42,3 +42,327 @@ function nameChanger(oldName) {
 
 // Did your code work? The line below will tell you!
 console.log(nameChanger(name));
+
+
+Quiz 3
+var html = '<script src="http://hackyourwebsite.com/eviljavascript.js"></script>';
+
+var charEscape = function(_html) {
+    var newHTML = _html;
+    // How will you make sure that newHTML doesn't contain any < or > ?
+    // Your code goes here!
+    newHTML = newHTML.replace(/</g, "&lt;");
+    newHTML = newHTML.replace(/>/g, "&gt;");
+
+    // Don't delete this line!
+    return newHTML;
+};
+
+// Did your code work? The line below will tell you!
+console.log(charEscape(html));
+
+
+Quiz return statmement
+
+
+ar work = {
+  "jobs": [
+    {
+      "employer": "Udacity",
+      "title": "Course Developer",
+      "location": "Mountain View, CA",
+      "dates": "Feb 2014 - Current",
+      "description": "Who moved my cheese cheesy feet cauliflower cheese. Queso taleggio when the cheese comes out everybody's happy airedale ricotta cheese and wine paneer camembert de normandie. Swiss mozzarella cheese slices feta fromage frais airedale swiss cheesecake. Hard cheese blue castello halloumi parmesan say cheese stinking bishop jarlsberg."
+    },
+    {
+      "employer": "LearnBIG",
+      "title": "Software Engineer",
+      "location": "Seattle, WA",
+      "dates": "May 2013 - Jan 2014",
+      "description": "Who moved my cheese cheesy feet cauliflower cheese. Queso taleggio when the cheese comes out everybody's happy airedale ricotta cheese and wine paneer camembert de normandie. Swiss mozzarella cheese slices feta fromage frais airedale swiss cheesecake. Hard cheese blue castello halloumi parmesan say cheese stinking bishop jarlsberg."
+    },
+    {
+      "employer": "LEAD Academy Charter High School",
+      "title": "Science Teacher",
+      "location": "Nashville, TN",
+      "dates": "Jul 2012 - May 2013",
+      "description": "Who moved my cheese cheesy feet cauliflower cheese. Queso taleggio when the cheese comes out everybody's happy airedale ricotta cheese and wine paneer camembert de normandie. Swiss mozzarella cheese slices feta fromage frais airedale swiss cheesecake. Hard cheese blue castello halloumi parmesan say cheese stinking bishop jarlsberg."
+    },
+    {
+      "employer": "Stratford High School",
+      "title": "Science Teacher",
+      "location": "Nashville, TN",
+      "dates": "Jun 2009 - Jun 2012",
+      "description": "Who moved my cheese cheesy feet cauliflower cheese. Queso taleggio when the cheese comes out everybody's happy airedale ricotta cheese and wine paneer camembert de normandie. Swiss mozzarella cheese slices feta fromage frais airedale swiss cheesecake. Hard cheese blue castello halloumi parmesan say cheese stinking bishop jarlsberg."
+    }
+  ]
+};
+
+// Your code goes here! Let me help you get started
+
+function locationizer(work_obj) {
+var loc =[];
+var len = work_obj.jobs.length;
+console.log(len);
+for(i = 0; i < len; i++)
+{
+    loc.push(work_obj["jobs"][i]["location"]);
+}
+return loc
+
+}
+
+// Did locationizer() work? This line will tell you!
+console.log(locationizer(work));
+
+
+
+challenge
+
+function getRelationship(x, y) {
+ var first = false;
+ var second =false;
+ if(y===undefined)
+    {if (x%1 === 0) return "Can't compare relationships because "+y+" is not a number";
+    return "Can't compare relationships because " + x + " and " + y+ " are not numbers";
+    }
+ if(x%1 ===0)
+     first =true;
+ if(y%1 ===0)
+     second =true;
+     //.log(x%1, y%1, first, second,first+second);
+ if(first + second == 2)
+    {
+        if(x> y)
+            return ">";
+        else if(x < y)
+            return"<";
+             else
+            return"=";
+    }
+ else if(first + second === 0)
+        return "Can't compare relationships because " + x + " and " + y+ " are not numbers";
+ else if(first === false) return "Can't compare relationships because "+x+" is not a number"; 
+ else return "Can't compare relationships because "+y+" is not a number"; 
+}
+
+// Try logging these functions to test your code!
+console.log(getRelationship(1,4));
+console.log(getRelationship(1,1));
+console.log(getRelationship("that",2));
+console.log(getRelationship("this"," something else"));
+console.log(getRelationship(3));
+console.log(getRelationship("hi"));
+console.log(getRelationship(NaN));
+console.log(getRelationship(NaN, undefined));
+
+
+
+Challenge 2
+var moonWalkers = [
+  "Neil Armstrong",
+  "Buzz Aldrin",
+  "Pete Conrad",
+  "Alan Bean",
+  "Alan Shepard",
+  "Edgar Mitchell",
+  "David Scott",
+  "James Irwin",
+  "John Young",
+  "Charles Duke",
+  "Eugene Cernan",
+  "Harrison Schmitt"
+];
+
+function alphabetizer(names) {
+    // Your code goes here!
+    for(var name in names){
+        names[name]= names[name].split(" ")};
+       // console.log(names);
+    for(var name in names){  
+        names[name] = names[name][1]+", "+ names[name][0];
+    }
+     return names.sort();
+    
+}
+
+// Try logging your results to test your code!
+console.log(alphabetizer(moonWalkers));
+
+
+
+
+Challenge 3:
+
+// Iterate through the localizedRuleNames in ruleResults and 
+// return an array of their strings.
+function ruleList(results) {
+    // Your code goes here!
+    var list = [];
+    
+    for(var pointer in  results.formattedResults.ruleResults){
+    var item = results.formattedResults.ruleResults[pointer].localizedRuleName;
+    if (item ===undefined) return list;
+        else
+        {
+            list.push(item);
+            
+        }
+    }
+    return list; 
+    
+}
+
+// Iterate through pageStats in the psiResults object and 
+// return the total number of bytes to load the website.
+function totalBytes(results) {
+    // Your code goes here!
+    var bites = 0;
+    for(var pointer in  results.formattedResults.ruleResults){
+    var item = results.formattedResults.ruleResults[pointer].urlBlocks;
+    if(item !== undefined){
+       last = item.pop();
+     for(var index in last.header.args){
+        if(last.header.args[index].type === "BYTES"){
+            staging = last.header.args[index].value;
+            if(staging.match(/KiB/)===null){
+                bites =  bites + Number(staging.replace("B",""));
+            }   else {
+                bites =  bites + 1000 * Number(staging.replace("KiB",""));
+            }
+            
+        }
+     }
+
+     for(var count in last.urls){
+        var thing  = last.urls[count].result;
+        for(var mark in last.urls[count].result.args){
+            
+            if(last.urls[count].result.args[mark].type === "BYTES"){
+                staging = last.urls[count].result.args[mark].value;
+                if(staging.match(/KiB/)===null){
+                    bites =  bites + Number(staging.replace("B",""));
+            }   else {
+                    bites =  bites + 1000 * Number(staging.replace("KiB",""));
+            }
+            
+        }
+            
+        }
+     }
+     }
+    }
+    
+    // Revised Easy Answer
+    
+    bites = Number(results.pageStats.totalRequestBytes)+Number(results.pageStats.htmlResponseBytes)+Number(results.pageStats.
+    cssResponseBytes)+Number(results.pageStats.imageResponseBytes)+Number(results.pageStats.javascriptResponseBytes)+
+    Number(results.pageStats.otherResponseBytes)
+  return bites;
+}
+
+// Below, you'll find a sample PS Insights JSON
+// and two console.log statements to help you test your code!
+
+psinsights = {
+ "kind": "pagespeedonline#result",
+ "id": "/speed/pagespeed",
+ "responseCode": 200,
+ "title": "PageSpeed Home",
+ "score": 90,
+ "pageStats": {
+  "numberResources": 22,
+  "numberHosts": 7,
+  "totalRequestBytes": "2761",
+  "numberStaticResources": 16,
+  "htmlResponseBytes": "91981",
+  "cssResponseBytes": "37728",
+  "imageResponseBytes": "13909",
+  "javascriptResponseBytes": "247214",
+  "otherResponseBytes": "8804",
+  "numberJsResources": 6,
+  "numberCssResources": 2
+ },
+ "formattedResults": {
+  "locale": "en_US",
+  "ruleResults": {
+    "AvoidBadRequests": {
+      "localizedRuleName": "Avoid bad requests",
+      "ruleImpact": 0.0
+    },
+    "MinifyJavaScript": {
+      "localizedRuleName": "Minify JavaScript",
+      "ruleImpact": 0.1417,
+      "urlBlocks": [
+      {
+        "header": {
+       "format": "Minifying the following JavaScript resources could reduce their size by $1 ($2% reduction).",
+       "args": [
+        {
+         "type": "BYTES",
+         "value": "1.3KiB"
+        },
+        {
+         "type": "INT_LITERAL",
+         "value": "0"
+        }
+       ]
+        },
+        "urls": [
+        {
+          "result": {
+         "format": "Minifying $1 could save $2 ($3% reduction).",
+         "args": [
+          {
+           "type": "URL",
+           "value": "http://code.google.com/js/codesite_tail.pack.04102009.js"
+          },
+          {
+           "type": "BYTES",
+           "value": "717B"
+          },
+          {
+           "type": "INT_LITERAL",
+           "value": "1"
+          }
+         ]
+        }
+       },
+       {
+        "result": {
+         "format": "Minifying $1 could save $2 ($3% reduction).",
+         "args": [
+          {
+           "type": "URL",
+           "value": "http://www.gmodules.com/ig/proxy?url\u003dhttp%3A%2F%2Fjqueryjs.googlecode.com%2Ffiles%2Fjquery-1.2.6.min.js"
+          },
+          {
+           "type": "BYTES",
+           "value": "258B"
+          },
+          {
+           "type": "INT_LITERAL",
+           "value": "0"
+          }
+         ]
+        }
+       }
+      ]
+     }
+    ]
+   },
+   "SpriteImages": {
+    "localizedRuleName": "Combine images into CSS sprites",
+    "ruleImpact": 0.0
+   }
+  }
+ },
+ "version": {
+  "major": 1,
+  "minor": 11
+ }
+};
+
+// Try logging the outputs below to test your code!
+console.log(ruleList(psinsights));
+console.log(totalBytes(psinsights));
