@@ -1,7 +1,7 @@
 /*
 This is empty on purpose! Your code to build the resume will go here.
  */
- // $("#main").append(["Ho Tong Fatt"]);
+ $("#main").append(["Ho Tong Fatt"]);
  // var awesomeThoughts = "I am Tong Fatt and I am AWESOME!";
  // console.log(awesomeThoughts);
  // var email = "cameron@udacity.com";
@@ -205,9 +205,9 @@ projects.display();
  formattedWelcome = HTMLwelcomeMsg.replace("%data%", bio["welcome message"]);
 
 
- bio.display();
+ 
 
- bio.diplay = function
+ bio.display = function()
  { 
  	$("#header").prepend(formattedPicture);
  	$("#header").prepend(formattedRole);
@@ -227,34 +227,39 @@ projects.display();
  	$("#topContacts").prepend(formattedContactGithub);
  	$("#topContacts").prepend(formattedContactLinkedIn);
  
-	
+	}
 
-	work.display()
+	bio.display();
+
+	
  	
- 	work.display = function
+ 	work.display = function()
  	{
  
  		$("#workExperience").append(HTMLworkStart);// this line appends css ".work-entry" as the start
-  		for(job in work.jobs){
+  		for(job in work.jobs)
+  		{
   		formattedEmployer = HTMLworkEmployer.replace("%data%",work["jobs"][job]["employer"]);
  		formattedWorkTitle = HTMLworkTitle.replace("%data%",work["jobs"][job]["work_title"]);
   		formattedEmployerTitle = formattedEmployer + formattedWorkTitle	;
  		$(".work-entry:last").append(formattedEmployerTitle);
  		formattedDates = HTMLworkDates.replace("%data%",work["jobs"][job]["years_worked"]);
  		$(".work-entry:last").append(formattedDates);
- 		formattedDescription = HTMLworkDescription.replace("%data%",work["jobs"][job]["description"])
+ 		formattedDescription = HTMLworkDescription.replace("%data%",work["jobs"][job]["description"]);
  		$(".work-entry:last").append(formattedDescription);
-	} 
- 		 
+		} 
+ 	} 
 
-	education.display()
-	education.display = function
+ 	work.display();
+
+	
+	education.display = function()
 	{
  		 $("#education").append(HTMLschoolStart); //this line appends css ".eduction-entry" as the start
   		for(study in education.schools)
   		{			
  			formattedLastSchool = HTMLschoolName.replace("%data%", education["schools"][study]["name"]);
- 			formattedLevel = HTMLschoolDegree.replace("%data%",education["schools"][study]["level"])
+ 			formattedLevel = HTMLschoolDegree.replace("%data%",education["schools"][study]["level"]);
  			formattedSchoolLevel =  formattedLastSchool	+ formattedLevel;
  			$('.education-entry:last').append(formattedSchoolLevel);
  			formattedYearGraduated = HTMLschoolDates.replace("%data%", education.schools[study].year_ended);
@@ -268,7 +273,7 @@ projects.display();
   		for(study in education.online_courses)
   		{
   			formattedLastSchool = HTMLonlineTitle.replace("%data%", education["online_courses"][study]["name"]);
-  			formattedLevel = HTMLonlineSchool.replace("%data%",education["online_courses"][study]["level"])
+  			formattedLevel = HTMLonlineSchool.replace("%data%",education["online_courses"][study]["level"]);
   			formattedSchoolLevel =  formattedLastSchool	+ formattedLevel;
   			$('.education-entry:last').append(formattedSchoolLevel);
   			formattedYearGraduated = HTMLonlineDates.replace("%data%", education.online_courses[study].year_ended);
@@ -279,17 +284,17 @@ projects.display();
   		}
   	}
 
-
+  	education.display();
  $("#main").append(internationalizeButton);
 
-function inName(name) 
-{
-	name = name.trim().split(" ");
-	name[0] = name[0][0].toUpperCase()+ name[0].slice(1).toLowerCase();
-	name[1] = name[1].toUpperCase();
-	return name[0]+ " " + name[1]
+// function inName(name) 
+// {
+	// name = name.trim().split(" ");
+	// name[0] = name[0][0].toUpperCase()+ name[0].slice(1).toLowerCase();
+	// name[1] = name[1].toUpperCase();
+	// return name[0]+ " " + name[1];
 
-}
+// }	
 
 //add a map
 $("#mapDiv").append(googleMap);
